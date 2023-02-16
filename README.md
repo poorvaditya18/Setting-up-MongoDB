@@ -24,5 +24,4 @@ CONCEPT : both NoSQL and SQL support indexing
 -> MongoDB without indexing will perform a collection scan (like will do linear searching ) i.e scan every document in collection to select those element which match the query statement. collection == tables , documents == rows . Ex tweet:collection , tweetEntries:document
 -> But if an appropiate index exists for a query , MongoDB can use the index to limit the number of documents it must inspect.
 -> Example: B+ trees,Tries,hashing are used to store indexes.
-
-               Refer : mongoose docs
+Refer : <https://mongoosejs.com/docs>
