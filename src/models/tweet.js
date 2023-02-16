@@ -27,8 +27,13 @@ const tweetSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// NOTE -> virtual properties -> are created runtime. so the below property is not actually present in our db. it will be useful for runtime usecase.
+tweetSchema.virtual("connectWithEmail").get(function process() {
+  return `${this.content} was createdby: ${this.userEmail}`;
+});
+
 // Schema is just the blueprint how model will look like.
-// Model is actual model implementation that will fetch/connect to the database. 
+// Model is actual model implementation that will fetch/connect to the database.
 
 // After creating schema then create model . so our Tweet model will follow tweetSchema
 // It will automatically pluralize the model name

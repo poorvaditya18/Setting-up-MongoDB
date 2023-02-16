@@ -11,10 +11,10 @@ const Comment = require("./models/comment");
 const app = express();
 
 app.listen(3000, async () => {
+  
   console.log("server started  ");
   await connect();
   console.log("Mongo db connected");
-
 
   //  Document in Mongodb is treated as Row -->
   //  Document will be created for Tweet Model
@@ -25,7 +25,7 @@ app.listen(3000, async () => {
 
   //  Querying database using mongoose
   //   This will return array -->
-  //   const tweets = await Tweet.find({ userEmail: "ab@c.com" }); 
+  //   const tweets = await Tweet.find({ userEmail: "ab@c.com" });
   //   const tweets = await Tweet.findById("63e76865ff69f3bb000a2cd8"); //--> findById
   //   tweets.userEmail = "pq@r.com";
   //   tweets.save();
@@ -48,7 +48,7 @@ app.listen(3000, async () => {
   //   await tweet.save();
   //   console.log(tweet);
 
-  const tweet = await tweetRepo.getWithComments("63e7760ea194a00dd9184cbf");
-  console.log(tweet);
+  const tweet = await tweetRepo.getAll(2, 4);
+  console.log(tweet[0].id); //So here id property doesn't exists but still we are able to fetch due to --> virtual Properties
+  console.log(tweet[0].connectWithEmail); //virtual property
 });
-
