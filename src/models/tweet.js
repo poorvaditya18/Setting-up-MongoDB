@@ -32,6 +32,18 @@ tweetSchema.virtual("connectWithEmail").get(function process() {
   return `${this.content} was createdby: ${this.userEmail}`;
 });
 
+// Hooks ->
+// So here before the creation we are executing these methods ->
+// So technically before creating the tweet in the database this function is executing -> 
+// For example here we are adding some extra content for our tweet model. 
+// USE CASE -> we can put some validation checks ,encrypted passwords ,etc
+// SO These are extremely  useful.
+tweetSchema.pre("save", function (next) {
+  console.log("Inside a hook");
+  this.content = this.content + "adding xyz ";
+  next(); // next() --> will point to the next middleware that you might have attached 
+});
+
 // Schema is just the blueprint how model will look like.
 // Model is actual model implementation that will fetch/connect to the database.
 

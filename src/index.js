@@ -11,7 +11,6 @@ const Comment = require("./models/comment");
 const app = express();
 
 app.listen(3000, async () => {
-  
   console.log("server started  ");
   await connect();
   console.log("Mongo db connected");
@@ -48,7 +47,16 @@ app.listen(3000, async () => {
   //   await tweet.save();
   //   console.log(tweet);
 
-  const tweet = await tweetRepo.getAll(2, 4);
-  console.log(tweet[0].id); //So here id property doesn't exists but still we are able to fetch due to --> virtual Properties
-  console.log(tweet[0].connectWithEmail); //virtual property
+  // const tweet = await tweetRepo.getAll(2, 4);
+  // console.log(tweet[0].id); //So here id property doesn't exists but still we are able to fetch due to --> virtual Properties
+  // console.log(tweet[0].connectWithEmail); //virtual property
+
+  //example for hooks ->
+  // suppose we are creating new tweet
+  const tweet = await tweetRepo.create({
+    content: "Tweet with a new hook",
+    userEmail: "abz@c.com",
+    comment: "Illustration with hooks",
+  });
+  console.log(tweet);
 });
